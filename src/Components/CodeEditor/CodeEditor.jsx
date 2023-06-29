@@ -13,19 +13,21 @@ const CodeEditor = () => {
 	const theme = useSettings(state=> state.blackTheme)
 	const fontSize = useSettings(state=> state.fontSize)
 	const language = useSettings(state=> state.language)
+	const tabSize = useSettings(state=> state.tabSize)
 	return(
 		
 		<AceEditor
 			placeholder='good luck)'
    		// mode=
-			mode={language!=='' ? language: 'java'}
+			mode={language!=='' ? language: 'javascript'}
 			theme= {theme ? 'twilight': 'tomorrow'}
-			fontSize={25}
+			fontSize={fontSize}
 			name="Editor"
 			width='100vw'
 			height='100vh'
 			showPrintMargin={false}
 			focus={true}
+			tabSize={tabSize}
 
   		/>
 		

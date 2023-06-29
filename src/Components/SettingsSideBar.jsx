@@ -4,7 +4,6 @@ import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import { IconButton, TextField } from '@mui/material';
-
 import Menu from './Menu';
 import { useSettings } from '../store';
 import settings from '../img/settings.svg'
@@ -18,7 +17,7 @@ export default function SettingsSideBar() {
 	const setFont = useSettings(state=> state.setFont)
 	const font = useSettings(state=> state.font)
 	const setFontSize = useSettings(state=> state.setFontSize)
-	const fontSize = useSettings(state=> state.fontSize)
+	const fontSize = useSettings(state=> state.fontSizeStr)
 	const setTabSize = useSettings(state=> state.setTabSize)
 	const tabSize = useSettings(state=> state.tabSize)
 
@@ -38,17 +37,9 @@ export default function SettingsSideBar() {
       <ListItem  disablePadding  sx={{ mt:'10px'}}>
         	<Menu 
 			title={'Language'} 
-			items={['sass', 'java']} 
+			items={['sass', 'java', 'javascript']} 
 			setValue={setLanguage} 
 			value={language}/>
-      </ListItem>
-		<ListItem  disablePadding>
-			<Menu 
-			title={'Font'} 
-			items={['JetBrains Mono', 'Fira Code','Ubuntu Mono']}
-			setValue={setFont} 
-			value={font}
-			/>
       </ListItem>
 		<ListItem  disablePadding>
 			<Menu 
