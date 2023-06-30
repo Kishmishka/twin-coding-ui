@@ -3,9 +3,8 @@ import create from 'zustand'
 export const useSettings = create((set, get) =>({
 	language:'',
 	font:'',
-	fontSizeStr:'',
-	fontSizeNum:'',
-	tabSize:'',
+	fontSize:'20',
+	tabSize:'2',
 	blackTheme: false,
 	setLanguage:(value)=>{
 		set({language: value})
@@ -14,21 +13,7 @@ export const useSettings = create((set, get) =>({
 		set({font: value})
 	},
 	setFontSize:(value)=>{
-		switch(value){
-			case 'Big':
-				set({fontSize:34})
-				
-			break
-			case 'Medium':
-				set({fontSize:26})
-			break
-			case 'Small':
-				set({fontSize:15})
-			break
-		}
-		set({fontSizeStr:value})
-		
-
+		set({fontSize:value})
 	},
 	setTabSize:(value)=>{
 		set({tabSize:value})

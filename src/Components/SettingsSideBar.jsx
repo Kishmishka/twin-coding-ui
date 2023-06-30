@@ -3,10 +3,11 @@ import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import { IconButton, TextField } from '@mui/material';
+import { IconButton, Slider, TextField } from '@mui/material';
 import Menu from './Menu';
 import { useSettings } from '../store';
 import settings from '../img/settings.svg'
+import MySlider from './MySlider';
 
 
 
@@ -17,7 +18,7 @@ export default function SettingsSideBar() {
 	const setFont = useSettings(state=> state.setFont)
 	const font = useSettings(state=> state.font)
 	const setFontSize = useSettings(state=> state.setFontSize)
-	const fontSize = useSettings(state=> state.fontSizeStr)
+	const fontSize = useSettings(state=> state.fontSize)
 	const setTabSize = useSettings(state=> state.setTabSize)
 	const tabSize = useSettings(state=> state.tabSize)
 
@@ -31,31 +32,32 @@ export default function SettingsSideBar() {
       role="presentation"
     >
    <List >
-		<Box sx = {{display:"flex", justifyContent:"center"}}>
+		<Box sx = {{display:"flex", justifyContent:"center", mb:"30px"}}>
 			<img width={'30px'}  src={settings}/>
 		</Box>
+		<ListItem  disablePadding>
+			<MySlider
+			setValue={setTabSize} 
+			value={tabSize}
+			title={"TabSize"} 
+			max={4} 
+			min={1}
+			></MySlider>
+      </ListItem>
+		<ListItem  disablePadding>
+			<MySlider
+			setValue={setFontSize} 
+			value={fontSize} 
+			title={"FontSize"} 
+			max={40} 
+			min={15}></MySlider>
+      </ListItem>
       <ListItem  disablePadding  sx={{ mt:'10px'}}>
         	<Menu 
 			title={'Language'} 
 			items={['sass', 'java', 'javascript']} 
 			setValue={setLanguage} 
 			value={language}/>
-      </ListItem>
-		<ListItem  disablePadding>
-			<Menu 
-			title={'FontSize'} 
-			items={['Big', 'Medium','Small']}
-			setValue={setFontSize} 
-			value={fontSize}
-			/>
-      </ListItem>
-		<ListItem  disablePadding>
-			<Menu 
-			title={'TabSize'} 
-			items={['4','3','2']}
-			setValue={setTabSize} 
-			value={tabSize}
-			/>
       </ListItem>
    </List>
 	</Box>

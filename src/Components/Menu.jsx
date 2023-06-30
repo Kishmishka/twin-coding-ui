@@ -7,10 +7,7 @@ import styled from '@emotion/styled';
 import { TextField } from '@mui/material';
 
 const CssTextField = styled(TextField)({
-	
 	color:"#FFFFFFFF",
-
-	
 	 margin:"0 auto", 
 	 width:'87%',
 	'& label':{

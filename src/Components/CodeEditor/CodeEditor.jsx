@@ -19,7 +19,7 @@ const CodeEditor = () => {
 		<AceEditor
 			placeholder='good luck)'
    		// mode=
-			mode={language!=='' ? language: 'javascript'}
+			mode={language!=='' ? language: 'java'}
 			theme= {theme ? 'twilight': 'tomorrow'}
 			fontSize={fontSize}
 			name="Editor"
