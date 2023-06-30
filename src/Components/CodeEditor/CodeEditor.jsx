@@ -3,7 +3,8 @@ import './CodeEditor.scss'
 import AceEditor from "react-ace";
 
 import 'ace-builds/src-noconflict/mode-sass'
-import 'ace-builds/src-noconflict/mode-javascript';
+
+import "ace-builds/src-noconflict/mode-typescript";
 import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/theme-tomorrow";
 import "ace-builds/src-noconflict/theme-twilight";
@@ -17,12 +18,12 @@ const CodeEditor = () => {
 	return(
 		
 		<AceEditor
+		 	mode={language==='javascript'? "typescript": language!=='' ? language: 'java'}
+			
 			placeholder='good luck)'
-   		// mode=
-			mode={language!=='' ? language: 'java'}
 			theme= {theme ? 'twilight': 'tomorrow'}
 			fontSize={fontSize}
-			name="Editor"
+			name="UNIQUE_ID_OF_DIV"
 			width='100vw'
 			height='100vh'
 			showPrintMargin={false}

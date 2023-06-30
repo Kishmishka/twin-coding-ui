@@ -15,8 +15,6 @@ export default function SettingsSideBar() {
   	const [state, setState] = React.useState(false);
 	const setLanguage = useSettings(state => state.setLanguage)
 	const language = useSettings(state => state.language)
-	const setFont = useSettings(state=> state.setFont)
-	const font = useSettings(state=> state.font)
 	const setFontSize = useSettings(state=> state.setFontSize)
 	const fontSize = useSettings(state=> state.fontSize)
 	const setTabSize = useSettings(state=> state.setTabSize)
@@ -55,7 +53,7 @@ export default function SettingsSideBar() {
       <ListItem  disablePadding  sx={{ mt:'10px'}}>
         	<Menu 
 			title={'Language'} 
-			items={['sass', 'java', 'javascript']} 
+			items={['java', 'javascript']} 
 			setValue={setLanguage} 
 			value={language}/>
       </ListItem>

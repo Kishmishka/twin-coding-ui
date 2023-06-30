@@ -2,15 +2,14 @@ import create from 'zustand'
 
 export const useSettings = create((set, get) =>({
 	language:'',
-	font:'',
-	fontSize:'20',
-	tabSize:'2',
+	fontSize:20,
+	tabSize:3,
 	blackTheme: false,
 	setLanguage:(value)=>{
+		
 		set({language: value})
-	},
-	setFont:(value)=>{
-		set({font: value})
+	
+		
 	},
 	setFontSize:(value)=>{
 		set({fontSize:value})
