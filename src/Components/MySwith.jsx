@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import Switch, { SwitchProps } from '@mui/material/Switch';
+import Switch from '@mui/material/Switch';
 
 
 const MySwitch = styled(Switch)(({ blackTheme }) => ({

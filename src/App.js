@@ -1,50 +1,48 @@
-import { height } from '@mui/system';
 import './App.css';
-import CodeEditor from './Components/CodeEditor/CodeEditor';
+import CodeEditor from './Components/CodeEditor';
 import SideBar from './Components/SideBar';
 import io from 'socket.io-client'
 import { useEffect } from 'react';
-import {useLocation} from 'react-router-dom'
+import { useLog, useSettings } from './store';
+import { useBeforeunload } from 'react-beforeunload';
 
 const socket = io.connect('http://localhost:3030')
-const names = [
-	'Бодрая лань',
-'Веселый крокодил',
-'Безудержная панда',
-	 'Бодрая лань',
- 'Веселый крокодил',
-	 'Безудержная панда',
- 'Неуловимая чарепаха',
- 'Скрытный слон',
-	 'Заинтересованный ёж',
-	'Сухопутная рыба',
- 'Приземленная чайка',
- 'Элегантный утконос',
-	 'Реактивный лангустин',
-	 'Рентабельная белка',
- 'Маржинальная коала',
- 'Виртуозная капибара'
-]
+
 
 
 function App() {
+	const redactorValue = useSettings(state=>state.redactorValue)
+	const setRedactorValue = useSettings(state=>state.setRedactorValue)
+	const setId = useLog(state=>state.setId)
+	const setName = useLog(state=>state.setName)
+	const setRoom = useLog(state=>state.setRoom)
 	
 
 	useEffect(()=>{
-		const nameRand = names[Math.floor(Math.random() * 12)]
-		const params={
-			name: nameRand,
-			room:1
-		}
-		
-		socket.emit("join",params)
+		socket.emit("join")
+		socket.on('log',(data)=>{
+			setId(data.id)
+			setName(data.name)
+			setRoom(data.room)
+		})
+		socket.on('editRedactor',(editorValue)=>{
+			setRedactorValue(editorValue)
+		})
 	},[])
-
+	
 	useEffect(()=>{
-		  socket.on('message',({data})=>{
-		  	console.log(data)
-		  })
-	},[])
+			const params = {
+				data:redactorValue,
+				name:"3",
+				room:1
+			}
+		  socket.emit('redactorValue',params)
+	},[redactorValue])
+
+	useBeforeunload(()=>{
+		socket.emit("disconnect")
+	})
+
   return (
     <div className="App">
 	 	<SideBar></SideBar>

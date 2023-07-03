@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import { IconButton, Slider, TextField } from '@mui/material';
+import { IconButton } from '@mui/material';
 import Menu from './Menu';
 import { useSettings } from '../store';
 import settings from '../img/settings.svg'
