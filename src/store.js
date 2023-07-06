@@ -1,17 +1,14 @@
 import create from 'zustand'
 
-export const useSettings = create((set, get) =>({
+export const useSettingsRedactor = create((set, get) =>({
 	language:'',
-	redactorValue:'',
 	fontSize:20,
 	tabSize:3,
 	blackTheme: false,
+	cursorLabel: false,
 	
 	setLanguage:(value)=>{
 		set({language: value})
-	},
-	setRedactorValue:(value)=>{
-		set({redactorValue:value})
 	},
 	setFontSize:(value)=>{
 		set({fontSize:value})
@@ -21,6 +18,9 @@ export const useSettings = create((set, get) =>({
 	},
 	swapblackTheme:()=>{
 		set({blackTheme:!get().blackTheme})
+	},
+	swapCursorLabel:()=>{
+		set({cursorLabel:!get().cursorLabel})
 	}
 }))
 
@@ -28,7 +28,12 @@ export const useLog = create((set, get)=>({
 	id:0,
 	name:'',
 	room:0,
+	cursors:[],
 
+	setCursors(value){
+		const cursors = value.filter(cursor=>cursor.id!=get().id)
+		set({cursors:cursors})
+	},
 	setId:(value)=>{
 		set({id:value})
 	},
@@ -39,3 +44,24 @@ export const useLog = create((set, get)=>({
 		set({room:value})
 	}
 }))
+
+export const useRedactor = create((set, get) =>({
+	redactorValue:'',
+	cursorPosition:{
+		X:0,
+		Y:0
+	},
+
+	setCursorPosition(x,y){
+		set({cursorPosition:{X:x,Y:y}})
+	},
+	setRedactorValue:(value)=>{
+		set({redactorValue:value})
+	},
+	setCarriagePosition(x,y){
+		set({column:x})
+		set({row:y})
+	},
+
+}))
+

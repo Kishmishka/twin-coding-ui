@@ -3,9 +3,9 @@ import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import { IconButton } from '@mui/material';
+import { FormControlLabel, IconButton, Switch } from '@mui/material';
 import Menu from './Menu';
-import { useSettings } from '../store';
+import { useSettingsRedactor } from '../store';
 import settings from '../img/settings.svg'
 import MySlider from './MySlider';
 
@@ -13,13 +13,14 @@ import MySlider from './MySlider';
 
 export default function SettingsSideBar() {
   	const [state, setState] = React.useState(false);
-	const setLanguage = useSettings(state => state.setLanguage)
-	const language = useSettings(state => state.language)
-	const setFontSize = useSettings(state=> state.setFontSize)
-	const fontSize = useSettings(state=> state.fontSize)
-	const setTabSize = useSettings(state=> state.setTabSize)
-	const tabSize = useSettings(state=> state.tabSize)
-
+	const setLanguage = useSettingsRedactor(state => state.setLanguage)
+	const language = useSettingsRedactor(state => state.language)
+	const setFontSize = useSettingsRedactor(state=> state.setFontSize)
+	const fontSize = useSettingsRedactor(state=> state.fontSize)
+	const setTabSize = useSettingsRedactor(state=> state.setTabSize)
+	const tabSize = useSettingsRedactor(state=> state.tabSize)
+	const swapCursorLabel = useSettingsRedactor(state=> state.swapCursorLabel)
+	const cursorLabel = useSettingsRedactor(state=> state.cursorLabel)
   const toggleDrawer = (open) => (event) => {
     setState(open);
   };
@@ -56,6 +57,15 @@ export default function SettingsSideBar() {
 			items={['java', 'javascript']} 
 			setValue={setLanguage} 
 			value={language}/>
+      </ListItem>
+		<ListItem  disablePadding>
+		<FormControlLabel
+			sx={{color:'#F0F0F0', margin:'0 auto'}}
+          control={
+            <Switch checked={cursorLabel} onChange={(e)=>{swapCursorLabel();}} name="antoine" />
+          }
+          label="Cursor label"
+        />
       </ListItem>
    </List>
 	</Box>
