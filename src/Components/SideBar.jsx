@@ -1,7 +1,7 @@
 import React from 'react'
 import logo from '../img/logo.svg'
 import Box from '@mui/material/Box';
-import SettingsSideBar from './SettingsSideBar';
+import SettingsSideBar from './SettingsSideBar/SettingsSideBar';
 import MySwitch from './MySwith';
 import { useSettingsRedactor } from '../store';
 

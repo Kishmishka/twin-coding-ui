@@ -46,7 +46,7 @@ const MySwitch = styled(Switch)(({ blackTheme }) => ({
 	'& .MuiSwitch-track': {
 	  opacity: 4,
 	  transition:'0.5s',
-	  backgroundColor: blackTheme ? '#CDCDCD' : '#aab4be',
+	  backgroundColor: blackTheme ? '#F6529C' : '#F6F6F6',
 	  borderRadius: 20 / 2,
 	},
  }));

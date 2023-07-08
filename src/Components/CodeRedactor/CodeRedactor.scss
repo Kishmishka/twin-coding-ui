@@ -1,0 +1,13 @@
+.replacement_marker {
+   position: absolute;
+	z-index: 3;
+	
+   background-color: red;
+}
+.ace_marker-layer {
+	> div:not(.ace_selection){
+		width: 2px !important;
+		border-radius: unset !important;
+		left: 100 !important;
+	}
+ }

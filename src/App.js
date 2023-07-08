@@ -1,29 +1,28 @@
 import './App.css';
-import CodeEditor from './Components/CodeEditor';
+import CodeEditor from './Components/CodeRedactor/CodeRedactor';
 import SideBar from './Components/SideBar';
 import io from 'socket.io-client'
-import { useEffect, useRef, useState } from 'react';
-import { useLog, useRedactor, useSettingsRedactor } from './store';
+import { useEffect} from 'react';
+import { useLog, useRedactor} from './store';
 import { useBeforeunload } from 'react-beforeunload';
 import { URLS } from './URLS';
 import Cursor from './Components/Cursor';
-const  process = require('process')
 
 const socket = io.connect(URLS.httpServer)	
 function App() {
-	const redactorValue = useRedactor(state=>state.redactorValue)
-	const setRedactorValue = useRedactor(state=>state.setRedactorValue)
-	const setId = useLog(state=>state.setId)
-	const setName = useLog(state=>state.setName)
-	const setRoom = useLog(state=>state.setRoom)
-	const id = useLog(state=>state.id)
-	const name = useLog(state=>state.name)
-	const room = useLog(state=>state.room)
-	const cursors = useLog(state=>state.cursors)
-	const setCursors = useLog(state=>state.setCursors)
-	const cursorPosition = useRedactor(state=>state.cursorPosition)
+	const redactorValue 	   = useRedactor(state=>state.redactorValue)
+	const setRedactorValue  = useRedactor(state=>state.setRedactorValue)
+	const cursorPosition    = useRedactor(state=>state.cursorPosition)
 	const setCursorPosition = useRedactor(state=>state.setCursorPosition)
-
+	const setId 			   = useLog(state=>state.setId)
+	const setName 			   = useLog(state=>state.setName)
+	const setRoom 			   = useLog(state=>state.setRoom)
+	const id 				   = useLog(state=>state.id)
+	const name 				   = useLog(state=>state.name)
+	const room 				   = useLog(state=>state.room)
+	const users 			   = useLog(state=>state.users)
+	const setUsers        	= useLog(state=>state.setUsers)
+	
 
 	useEffect(()=>{
 		socket.emit(URLS.join)
@@ -31,13 +30,19 @@ function App() {
 			setId(data.id)
 			setName(data.name)
 			setRoom(data.room)
+			setRedactorValue(data.editorValue)
 		})
 		socket.on(URLS.serverValue,(editorValue)=>{
 			setRedactorValue(editorValue)
 		})
-		socket.on(URLS.serverCursors,(cursorsss)=>{
-			setCursors(cursorsss)
-		})
+		
+		socket.on(URLS.serverCursors,(userss)=>{
+				setUsers(userss)
+			})
+		socket.on(URLS.clientDisconnect,(userss)=>{
+			setUsers(userss)
+		})	
+		
 	},[])
 	
 	useEffect(()=>{
@@ -55,7 +60,8 @@ function App() {
 			X:cursorPosition.X,
 			Y:cursorPosition.Y,
 		}
-		  socket.emit(URLS.positionCursorChange,cursor)
+		
+		socket.emit(URLS.positionCursorChange,cursor)
 	},[cursorPosition])
 
 	
@@ -69,11 +75,11 @@ function App() {
 	 onMouseMove={(e)=>{setCursorPosition(e.pageX,e.pageY)}}>
 	 	<SideBar />
 		<CodeEditor/>
-		{cursors.map(cursor=><Cursor 
-		color={cursor.color} 
-		x={cursor.X} 
-		y={cursor.Y}
-		name={cursor.name}
+		{users.map(user=><Cursor 
+		color={user.color} 
+		x={user.cursorX} 
+		y={user.cursorY}
+		name={user.name}
 		/>)}
 		
 		{/* <Cursor 

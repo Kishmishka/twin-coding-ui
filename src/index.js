@@ -8,9 +8,23 @@ import { ThemeProvider } from '@emotion/react';
 
 
 const theme = createTheme({
+	// components:{
+	// 	MuiSelect:{
+	// 		styleOverrides: {
+				
+	// 			// Name of the slot
+	// 			root: {
+	// 			 appearance: "none",
+	// 			 borderColor:"#DC0000",
+				 
+	// 			},
+	// 		 },
+	// 	  },
+	// 	},
 	palette:{
 		primary:{
-			main:'#F0F0F0'
+			main:'#F0F0F0',
+			contrastText: '#fff',
 		}
 	}
 })

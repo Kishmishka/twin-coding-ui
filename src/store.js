@@ -19,20 +19,23 @@ export const useSettingsRedactor = create((set, get) =>({
 	swapblackTheme:()=>{
 		set({blackTheme:!get().blackTheme})
 	},
+	setCursorLabel:(value)=>{
+		set({cursorLabel:value})
+	},
 	swapCursorLabel:()=>{
 		set({cursorLabel:!get().cursorLabel})
 	}
 }))
 
 export const useLog = create((set, get)=>({
-	id:0,
+	id:'',
 	name:'',
 	room:0,
-	cursors:[],
+	users:[],
 
-	setCursors(value){
-		const cursors = value.filter(cursor=>cursor.id!=get().id)
-		set({cursors:cursors})
+	setUsers(value){
+		const users = value.filter(user=>user.id!=get().id)
+		set({users:users})
 	},
 	setId:(value)=>{
 		set({id:value})
@@ -47,20 +50,23 @@ export const useLog = create((set, get)=>({
 
 export const useRedactor = create((set, get) =>({
 	redactorValue:'',
+	textCursorPosition:{
+		column:0,
+		row:0
+	},
 	cursorPosition:{
 		X:0,
 		Y:0
 	},
 
-	setCursorPosition(x,y){
-		set({cursorPosition:{X:x,Y:y}})
-	},
 	setRedactorValue:(value)=>{
 		set({redactorValue:value})
 	},
-	setCarriagePosition(x,y){
-		set({column:x})
-		set({row:y})
+	setCursorPosition(x,y){
+		set({cursorPosition:{X:x,Y:y}})
+	},
+	setTextCursorPosition(x,y){
+		set({textCursorPosition:{column:x,row:y}})
 	},
 
 }))

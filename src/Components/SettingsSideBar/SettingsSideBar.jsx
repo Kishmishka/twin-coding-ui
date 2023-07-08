@@ -4,11 +4,11 @@ import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import { FormControlLabel, IconButton, Switch } from '@mui/material';
-import Menu from './Menu';
-import { useSettingsRedactor } from '../store';
-import settings from '../img/settings.svg'
-import MySlider from './MySlider';
-
+import Menu from '../Menu';
+import { useSettingsRedactor } from '../../store';
+import settings from '../../img/settings.svg'
+import MySlider from '../MySlider';
+import './SettingsSideBar.scss'
 
 
 export default function SettingsSideBar() {
@@ -34,7 +34,7 @@ export default function SettingsSideBar() {
 		<Box sx = {{display:"flex", justifyContent:"center", mb:"30px"}}>
 			<img width={'30px'}  src={settings}/>
 		</Box>
-		<ListItem  disablePadding>
+		<ListItem className='gg' disablePadding>
 			<MySlider
 			setValue={setTabSize} 
 			value={tabSize}
@@ -51,7 +51,7 @@ export default function SettingsSideBar() {
 			max={40} 
 			min={15}></MySlider>
       </ListItem>
-      <ListItem  disablePadding  sx={{ mt:'10px'}}>
+      <ListItem  disablePadding  sx={{ mt:'25px',}}>
         	<Menu 
 			title={'Language'} 
 			items={['java', 'javascript']} 
@@ -64,7 +64,7 @@ export default function SettingsSideBar() {
           control={
             <Switch checked={cursorLabel} onChange={(e)=>{swapCursorLabel();}} name="antoine" />
           }
-          label="Cursor label"
+          label="User cursors"
         />
       </ListItem>
    </List>

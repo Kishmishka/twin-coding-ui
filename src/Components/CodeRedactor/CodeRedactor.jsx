@@ -6,7 +6,8 @@ import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/theme-tomorrow";
 import "ace-builds/src-noconflict/theme-twilight";
 import "ace-builds/src-noconflict/ext-language_tools";
-import { useLog, useRedactor, useSettingsRedactor } from '../store';
+import {useRedactor, useSettingsRedactor } from '../../store';
+import './CodeRedactor.scss'
 
 const CodeEditor = () => {
 	const theme = useSettingsRedactor(state=> state.blackTheme)
@@ -15,7 +16,12 @@ const CodeEditor = () => {
 	const tabSize = useSettingsRedactor(state=> state.tabSize)
 	const redactorValue = useRedactor(state=> state.redactorValue)
 	const setRedactorValue = useRedactor(state => state.setRedactorValue)
-	const setCarriagePosition = useRedactor(state => state.setCarriagePosition)
+	const textCursorPosition = useRedactor(state => state.textCursorPosition)
+	const setTextCursorPosition = useRedactor(state => state.setTextCursorPosition)
+
+	const markers = [];
+	markers.push({startRow: 2, startCol: 55, endRow: 2, endCol: 56, className: 'replacement_marker', type: 'div' });
+	markers.push({startRow: 3, startCol: 55, endRow: 3, endCol: 56, className: 'replacement_marker', type: 'div' });
 	return(
 		
 		<AceEditor
@@ -33,8 +39,8 @@ const CodeEditor = () => {
 			focus={true}
 			tabSize={tabSize}
 			onChange={(value)=>{setRedactorValue(value)}}
-			onCursorChange={(e)=>{setCarriagePosition(e.cursor.column,e.cursor.row)}}
-			markers = {[{ startRow: 0, startCol: 2, endRow: 1, endCol: 20, className: 'error-marker', type: 'background' }]}
+			onCursorChange={(e)=>{setTextCursorPosition(e.cursor.column,e.cursor.row)}}
+			markers = {markers}
   		/>
 		
 )
