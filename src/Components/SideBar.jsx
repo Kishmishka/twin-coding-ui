@@ -5,6 +5,7 @@ import SettingsSideBar from './SettingsSideBar/SettingsSideBar';
 import MySwitch from './MySwith';
 import { useSettingsRedactor } from '../store';
 
+//Компонент сайдбара содержащий лого, выбор темы и кнопку вызова настроек
 const SideBar = ({}) => {
 	const blackTheme = useSettingsRedactor(state=> state.blackTheme)
 	const swapblackTheme = useSettingsRedactor(state=> state.swapblackTheme)

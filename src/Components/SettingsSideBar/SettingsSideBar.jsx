@@ -10,20 +10,23 @@ import settings from '../../img/settings.svg'
 import MySlider from '../MySlider';
 import './SettingsSideBar.scss'
 
-
+//выпадающее меню настроек редактора
+//дочерний компонент сайдбара
 export default function SettingsSideBar() {
   	const [state, setState] = React.useState(false);
-	const setLanguage = useSettingsRedactor(state => state.setLanguage)
-	const language = useSettingsRedactor(state => state.language)
-	const setFontSize = useSettingsRedactor(state=> state.setFontSize)
-	const fontSize = useSettingsRedactor(state=> state.fontSize)
-	const setTabSize = useSettingsRedactor(state=> state.setTabSize)
-	const tabSize = useSettingsRedactor(state=> state.tabSize)
-	const swapCursorLabel = useSettingsRedactor(state=> state.swapCursorLabel)
-	const cursorLabel = useSettingsRedactor(state=> state.cursorLabel)
-  const toggleDrawer = (open) => (event) => {
+	const setLanguage       = useSettingsRedactor(state => state.setLanguage)
+	const language 		   = useSettingsRedactor(state => state.language)
+	const setFontSize       = useSettingsRedactor(state=> state.setFontSize)
+	const fontSize          = useSettingsRedactor(state=> state.fontSize)
+	const setTabSize        = useSettingsRedactor(state=> state.setTabSize)
+	const tabSize           = useSettingsRedactor(state=> state.tabSize)
+	const swapCursorLabel   = useSettingsRedactor(state=> state.swapCursorLabel)
+	const cursorLabel       = useSettingsRedactor(state=> state.cursorLabel)
+   const swapTextCursorLabel   = useSettingsRedactor(state=> state.swapTextCursorLabel)
+	const textCursorLabel       = useSettingsRedactor(state=> state.textCursorLabel)
+	const toggleDrawer = (open) => (event) => {
     setState(open);
-  };
+   };
 
   const list = (anchor) => (
     <Box
@@ -60,11 +63,20 @@ export default function SettingsSideBar() {
       </ListItem>
 		<ListItem  disablePadding>
 		<FormControlLabel
-			sx={{color:'#F0F0F0', margin:'0 auto'}}
+			sx={{color:'#F0F0F0', marginLeft:'5px'}}
           control={
             <Switch checked={cursorLabel} onChange={(e)=>{swapCursorLabel();}} name="antoine" />
           }
           label="User cursors"
+        />
+      </ListItem>
+		<ListItem  disablePadding>
+		<FormControlLabel
+			sx={{color:'#F0F0F0', marginLeft:'5px'}}
+          control={
+            <Switch checked={textCursorLabel} onChange={(e)=>{swapTextCursorLabel();}} name="antoine" />
+          }
+          label="User text cursors"
         />
       </ListItem>
    </List>

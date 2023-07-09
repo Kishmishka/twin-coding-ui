@@ -6,6 +6,10 @@ import Select from '@mui/material/Select';
 import styled from '@emotion/styled';
 import { TextField } from '@mui/material';
 
+
+//Модернизированный компонент menu взятый из material-ui
+//Используется в компоненте SettingsSideBar
+
 const CssTextField = styled(TextField)({
 	color:"#FFFFFFFF",
 	 margin:"0 auto", 

@@ -8,24 +8,25 @@ import { useBeforeunload } from 'react-beforeunload';
 import { URLS } from './URLS';
 import Cursor from './Components/Cursor';
 
+
+// Главный компонент приложения который 
+// Содержит сайдбар, редактор кода и логику работы с сервером
 const socket = io.connect(URLS.httpServer)	
 function App() {
-	const redactorValue 	   = useRedactor(state=>state.redactorValue)
-	const setRedactorValue  = useRedactor(state=>state.setRedactorValue)
-	const cursorPosition    = useRedactor(state=>state.cursorPosition)
-	const setCursorPosition = useRedactor(state=>state.setCursorPosition)
+	const redactorValue 	    = useRedactor(state=>state.redactorValue)
+	const setRedactorValue   = useRedactor(state=>state.setRedactorValue)
+	const cursorPosition     = useRedactor(state=>state.cursorPosition)
+	const setCursorPosition  = useRedactor(state=>state.setCursorPosition)
 	const textCursorPosition = useRedactor(state=>state.textCursorPosition)
-	
-	const setId 			   = useLog(state=>state.setId)
-	const setName 			   = useLog(state=>state.setName)
-	const setRoom 			   = useLog(state=>state.setRoom)
-	const id 				   = useLog(state=>state.id)
-	const name 				   = useLog(state=>state.name)
-	const room 				   = useLog(state=>state.room)
-	const users 			   = useLog(state=>state.users)
-	const setUsers        	= useLog(state=>state.setUsers)
-	
-	const setMarkers        = useLog(state=>state.setMarkers)
+	const setId 			    = useLog(state=>state.setId)
+	const setName 			    = useLog(state=>state.setName)
+	const setRoom 			    = useLog(state=>state.setRoom)
+	const id 				    = useLog(state=>state.id)
+	const name 				    = useLog(state=>state.name)
+	const room 				    = useLog(state=>state.room)
+	const users 			    = useLog(state=>state.users)
+	const setUsers           = useLog(state=>state.setUsers)
+	const setMarkers         = useLog(state=>state.setMarkers)
 	
 
 	useEffect(()=>{
@@ -102,11 +103,6 @@ function App() {
 		y={user.cursorY}
 		name={user.name}
 		/>)}
-		
-		{/* <Cursor 
-		color={'#31B2A5'} 
-		x={cursorPosition.X} 
-		y={cursorPosition.Y}/> */}
     </div>
   );
 }

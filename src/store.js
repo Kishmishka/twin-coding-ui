@@ -1,11 +1,14 @@
 import create from 'zustand'
 
+// Стор состояний созданный с помощью Zushtand
+// Zushtand - простой стейтменеджер 
 export const useSettingsRedactor = create((set, get) =>({
 	language:'',
 	fontSize:20,
 	tabSize:3,
 	blackTheme: false,
 	cursorLabel: false,
+	textCursorLabel: false,
 	
 	setLanguage:(value)=>{
 		set({language: value})
@@ -24,6 +27,9 @@ export const useSettingsRedactor = create((set, get) =>({
 	},
 	swapCursorLabel:()=>{
 		set({cursorLabel:!get().cursorLabel})
+	},
+	swapTextCursorLabel:()=>{
+		set({textCursorLabel:!get().textCursorLabel})
 	}
 }))
 

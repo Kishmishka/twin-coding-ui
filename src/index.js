@@ -8,19 +8,6 @@ import { ThemeProvider } from '@emotion/react';
 
 
 const theme = createTheme({
-	// components:{
-	// 	MuiSelect:{
-	// 		styleOverrides: {
-				
-	// 			// Name of the slot
-	// 			root: {
-	// 			 appearance: "none",
-	// 			 borderColor:"#DC0000",
-				 
-	// 			},
-	// 		 },
-	// 	  },
-	// 	},
 	palette:{
 		primary:{
 			main:'#F0F0F0',
@@ -38,7 +25,4 @@ root.render(
 
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

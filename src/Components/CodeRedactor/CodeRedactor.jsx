@@ -9,15 +9,18 @@ import "ace-builds/src-noconflict/ext-language_tools";
 import {useLog, useRedactor, useSettingsRedactor } from '../../store';
 import './CodeRedactor.scss'
 
+//Компонент редактора кода с натройками
+//npm react-ace
 const CodeEditor = () => {
-	const theme = useSettingsRedactor(state=> state.blackTheme)
-	const fontSize = useSettingsRedactor(state=> state.fontSize)
-	const language = useSettingsRedactor(state=> state.language)
-	const tabSize = useSettingsRedactor(state=> state.tabSize)
-	const redactorValue = useRedactor(state=> state.redactorValue)
-	const setRedactorValue = useRedactor(state => state.setRedactorValue)
+	const theme                 = useSettingsRedactor(state=> state.blackTheme)
+	const fontSize              = useSettingsRedactor(state=> state.fontSize)
+	const language              = useSettingsRedactor(state=> state.language)
+	const tabSize               = useSettingsRedactor(state=> state.tabSize)
+	const redactorValue         = useRedactor(state=> state.redactorValue)
+	const setRedactorValue      = useRedactor(state => state.setRedactorValue)
 	const setTextCursorPosition = useRedactor(state => state.setTextCursorPosition)
 	const markers        	    = useLog(state=>state.markers)
+	const textCursorLabel       = useSettingsRedactor(state=> state.textCursorLabel)
 	
 	return(
 		<AceEditor
@@ -37,7 +40,7 @@ const CodeEditor = () => {
 			onChange={(value)=>{setRedactorValue(value)}}
 			onCursorChange={(e)=>{setTextCursorPosition(e.cursor.column,e.cursor.row)
 			console.log(markers)}}
-			markers = {markers}
+			markers = {textCursorLabel? markers: []}
   		/>
 		
 )

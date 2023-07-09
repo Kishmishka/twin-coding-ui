@@ -3,6 +3,9 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Slider from '@mui/material/Slider';
 
+
+//Модернизированный слайдер из material-ui
+//Используется в компоненте SettingsSideBar
 export default function MySlider({value, title, max, min, setValue}) {
  
   return (
