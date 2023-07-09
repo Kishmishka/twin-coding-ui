@@ -6,7 +6,7 @@ import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/theme-tomorrow";
 import "ace-builds/src-noconflict/theme-twilight";
 import "ace-builds/src-noconflict/ext-language_tools";
-import {useRedactor, useSettingsRedactor } from '../../store';
+import {useLog, useRedactor, useSettingsRedactor } from '../../store';
 import './CodeRedactor.scss'
 
 const CodeEditor = () => {
@@ -16,14 +16,10 @@ const CodeEditor = () => {
 	const tabSize = useSettingsRedactor(state=> state.tabSize)
 	const redactorValue = useRedactor(state=> state.redactorValue)
 	const setRedactorValue = useRedactor(state => state.setRedactorValue)
-	const textCursorPosition = useRedactor(state => state.textCursorPosition)
 	const setTextCursorPosition = useRedactor(state => state.setTextCursorPosition)
-
-	const markers = [];
-	markers.push({startRow: 2, startCol: 55, endRow: 2, endCol: 56, className: 'replacement_marker', type: 'div' });
-	markers.push({startRow: 3, startCol: 55, endRow: 3, endCol: 56, className: 'replacement_marker', type: 'div' });
+	const markers        	    = useLog(state=>state.markers)
+	
 	return(
-		
 		<AceEditor
 			style={{position:"relative", zIndex:2}}
 		 	mode={language==='javascript'? "typescript": language!=='' ? language: 'java'}
@@ -39,7 +35,8 @@ const CodeEditor = () => {
 			focus={true}
 			tabSize={tabSize}
 			onChange={(value)=>{setRedactorValue(value)}}
-			onCursorChange={(e)=>{setTextCursorPosition(e.cursor.column,e.cursor.row)}}
+			onCursorChange={(e)=>{setTextCursorPosition(e.cursor.column,e.cursor.row)
+			console.log(markers)}}
 			markers = {markers}
   		/>
 		

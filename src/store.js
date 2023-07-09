@@ -32,9 +32,14 @@ export const useLog = create((set, get)=>({
 	name:'',
 	room:0,
 	users:[],
+	markers:[],
 
+	setMarkers(value){
+		const markers = value.filter(marker=>marker.id!==get().id)
+		set({markers:markers})
+	},
 	setUsers(value){
-		const users = value.filter(user=>user.id!=get().id)
+		const users = value.filter(user=>user.id!==get().id)
 		set({users:users})
 	},
 	setId:(value)=>{
@@ -58,7 +63,6 @@ export const useRedactor = create((set, get) =>({
 		X:0,
 		Y:0
 	},
-
 	setRedactorValue:(value)=>{
 		set({redactorValue:value})
 	},

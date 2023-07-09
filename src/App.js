@@ -14,6 +14,8 @@ function App() {
 	const setRedactorValue  = useRedactor(state=>state.setRedactorValue)
 	const cursorPosition    = useRedactor(state=>state.cursorPosition)
 	const setCursorPosition = useRedactor(state=>state.setCursorPosition)
+	const textCursorPosition = useRedactor(state=>state.textCursorPosition)
+	
 	const setId 			   = useLog(state=>state.setId)
 	const setName 			   = useLog(state=>state.setName)
 	const setRoom 			   = useLog(state=>state.setRoom)
@@ -23,6 +25,8 @@ function App() {
 	const users 			   = useLog(state=>state.users)
 	const setUsers        	= useLog(state=>state.setUsers)
 	
+	const setMarkers        = useLog(state=>state.setMarkers)
+	
 
 	useEffect(()=>{
 		socket.emit(URLS.join)
@@ -30,17 +34,24 @@ function App() {
 			setId(data.id)
 			setName(data.name)
 			setRoom(data.room)
-			setRedactorValue(data.editorValue)
-		})
-		socket.on(URLS.serverValue,(editorValue)=>{
-			setRedactorValue(editorValue)
-		})
-		
-		socket.on(URLS.serverCursors,(userss)=>{
+			
+		setRedactorValue(data.editorValue)
+
+			socket.on(URLS.serverValue,(editorValue)=>{
+				setRedactorValue(editorValue)
+			})
+			socket.on(URLS.serverCursors,(userss)=>{
 				setUsers(userss)
 			})
-		socket.on(URLS.clientDisconnect,(userss)=>{
-			setUsers(userss)
+			socket.on(URLS.serverTextCursors,(textCursorss)=>{
+				console.log(textCursorss)
+				setMarkers(textCursorss)
+			})
+		})
+
+		socket.on(URLS.clientDisconnect,(params)=>{
+			setUsers(params.userss)
+			setMarkers(params.textCursorss)
 		})	
 		
 	},[])
@@ -63,6 +74,16 @@ function App() {
 		
 		socket.emit(URLS.positionCursorChange,cursor)
 	},[cursorPosition])
+
+	useEffect(()=>{
+		const textCursor = {
+			id:id,
+			column:textCursorPosition.column,
+			row:textCursorPosition.row,
+		}
+		
+		socket.emit(URLS.positionTextCursorChange,textCursor)
+	},[textCursorPosition])
 
 	
 	useBeforeunload(()=>{

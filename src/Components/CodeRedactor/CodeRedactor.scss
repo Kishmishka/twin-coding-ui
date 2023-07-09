@@ -1,8 +1,27 @@
-.replacement_marker {
-   position: absolute;
+%text-cursor {
+	position: absolute;
 	z-index: 3;
-	
-   background-color: red;
+ }
+
+.TextCursor_red {
+  	@extend %text-cursor;
+   background-color: #C8333F;
+}
+.TextCursor_green {
+	@extend %text-cursor;
+   background-color: #57B54E;
+}
+.TextCursor_blue {
+	@extend %text-cursor;
+   background-color: #1861C8;
+}
+.TextCursor_violet {
+	@extend %text-cursor;
+   background-color: #B24D9A;
+}
+.TextCursor_turquoise {
+	@extend %text-cursor;
+   background-color: #31B2A5;
 }
 .ace_marker-layer {
 	> div:not(.ace_selection){

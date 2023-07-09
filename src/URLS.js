@@ -10,6 +10,8 @@ const URLS = {
 	disconnect:'disconnect',
 	positionCursorChange:'positionCursorChange',
 	serverCursors:'serverCursors',
-	clientDisconnect:'clientDisconnect'
+	clientDisconnect:'clientDisconnect',
+	positionTextCursorChange:'positionTextCursorChange',
+	serverTextCursors:'serverTextCursors'
 }
 exports.URLS = URLS
