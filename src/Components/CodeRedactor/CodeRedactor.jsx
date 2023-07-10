@@ -38,8 +38,7 @@ const CodeEditor = () => {
 			focus={true}
 			tabSize={tabSize}
 			onChange={(value)=>{setRedactorValue(value)}}
-			onCursorChange={(e)=>{setTextCursorPosition(e.cursor.column,e.cursor.row)
-			console.log(markers)}}
+			onCursorChange={(e)=>{setTextCursorPosition(e.cursor.column,e.cursor.row)}}
 			markers = {textCursorLabel? markers: []}
   		/>
 		

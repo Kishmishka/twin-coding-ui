@@ -60,6 +60,7 @@ export const useLog = create((set, get)=>({
 }))
 
 export const useRedactor = create((set, get) =>({
+	allowСhange:false,
 	redactorValue:'',
 	textCursorPosition:{
 		column:0,
@@ -69,8 +70,13 @@ export const useRedactor = create((set, get) =>({
 		X:0,
 		Y:0
 	},
-	setRedactorValue:(value)=>{
+
+	setStartRedactorValue:(value)=>{
 		set({redactorValue:value})
+		set({allowСhange:true})
+	},
+	setRedactorValue:(value)=>{
+			set({redactorValue:value})
 	},
 	setCursorPosition(x,y){
 		set({cursorPosition:{X:x,Y:y}})
