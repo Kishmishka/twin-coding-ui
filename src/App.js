@@ -29,7 +29,7 @@ function App() {
 	const users 			    	 = useLog(state=>state.users)
 	const setUsers           	 = useLog(state=>state.setUsers)
 	const setMarkers         	 = useLog(state=>state.setMarkers)
-	
+	const setColor         	    = useLog(state=>state.setColor)
 
 	useEffect(()=>{
 		socket.emit(URLS.join)
@@ -37,6 +37,7 @@ function App() {
 			setId(data.id)
 			setName(data.name)
 			setRoom(data.room)
+			setColor(data.color)
 			setStartRedactorValue(data.editorValue)
 		})
 		

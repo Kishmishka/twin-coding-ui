@@ -4,7 +4,7 @@ import create from 'zustand'
 // Zushtand - простой стейтменеджер 
 export const useSettingsRedactor = create((set, get) =>({
 	language:'',
-	fontSize:20,
+	fontSize:27,
 	tabSize:3,
 	blackTheme: false,
 	cursorLabel: false,
@@ -37,6 +37,7 @@ export const useLog = create((set, get)=>({
 	id:'',
 	name:'',
 	room:0,
+	color:'',
 	users:[],
 	markers:[],
 
@@ -56,7 +57,10 @@ export const useLog = create((set, get)=>({
 	},
 	setRoom:(value)=>{
 		set({room:value})
-	}
+	},
+	setColor:(value)=>{
+		set({color:value})
+	},
 }))
 
 export const useRedactor = create((set, get) =>({

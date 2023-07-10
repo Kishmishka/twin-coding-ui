@@ -3,12 +3,17 @@ import logo from '../img/logo.svg'
 import Box from '@mui/material/Box';
 import SettingsSideBar from './SettingsSideBar/SettingsSideBar';
 import MySwitch from './MySwith';
-import { useSettingsRedactor } from '../store';
+import { useLog, useSettingsRedactor } from '../store';
+import Avatar from './Avatar';
+
 
 //Компонент сайдбара содержащий лого, выбор темы и кнопку вызова настроек
 const SideBar = ({}) => {
 	const blackTheme = useSettingsRedactor(state=> state.blackTheme)
 	const swapblackTheme = useSettingsRedactor(state=> state.swapblackTheme)
+	const users = useLog(state=>state.users)
+	const color = useLog(state=>state.color)
+	const name  = useLog(state=>state.name)
 	return(
 		<Box sx={{
 			height: "100vh", 
@@ -22,9 +27,16 @@ const SideBar = ({}) => {
 			}}>
 			<div className="top">
 				<img className="sideBar_img" src={logo}/>
-				<MySwitch onChange={()=>{swapblackTheme()}} blackTheme={blackTheme} sx={{mt:"30px"}}></MySwitch>
+				{console.log(color)}
+				{console.log(name)}
+				{color!=='' && name!=='' ? <Avatar color={color} name={name} /> :''}
+				 
+				{users.map(user=><Avatar color={user.color} name={user.name} />)}
 			</div>
-			<SettingsSideBar></SettingsSideBar>
+			<div className="bottom">
+				<MySwitch onChange={()=>{swapblackTheme()}} blackTheme={blackTheme} sx={{mt:"30px"}}></MySwitch>
+				<SettingsSideBar></SettingsSideBar>
+			</div>
 		</Box>
 )
 }
