@@ -14,6 +14,7 @@ const SideBar = ({}) => {
 	const users = useLog(state=>state.users)
 	const color = useLog(state=>state.color)
 	const name  = useLog(state=>state.name)
+	
 	return(
 		<Box sx={{
 			height: "100vh", 
@@ -29,7 +30,7 @@ const SideBar = ({}) => {
 				<img className="sideBar_img" src={logo}/>
 				{console.log(color)}
 				{console.log(name)}
-				{color!=='' && name!=='' ? <Avatar color={color} name={name} /> :''}
+				{color!=='' && name!=='' && (<Avatar color={color} name={name} />)}
 				 
 				{users.map(user=><Avatar color={user.color} name={user.name} />)}
 			</div>
