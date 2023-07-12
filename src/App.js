@@ -2,108 +2,30 @@ import './App.css';
 import CodeEditor from './Components/CodeRedactor/CodeRedactor';
 import SideBar from './Components/SideBar';
 import io from 'socket.io-client'
-import { useEffect} from 'react';
-import { useLog, useRedactor, useSettingsRedactor} from './store';
+import Cursor from './Components/Cursor';
+import { useSendLanguage } from './Hooks/useSendLanguage';
+import { useSendTextCursorPosition } from './Hooks/useSendTextCursorPosition';
+import { useSendCursorPosition } from './Hooks/useSendCursorPosition';
+import { useSendRedactorValue } from './Hooks/useSendRedactorValue';
+import { useGetServerValue } from './Hooks/useGetServerValue';
+import { useLog, useRedactor} from './store';
 import { useBeforeunload } from 'react-beforeunload';
 import { URLS } from './URLS';
-import Cursor from './Components/Cursor';
-
 
 // Главный компонент приложения который 
 // Содержит сайдбар, редактор кода и логику работы с сервером
 const socket = io.connect(URLS.httpServer)	
 function App() {
-	const language              = useSettingsRedactor(state=> state.language)
-	const setLanguage           = useSettingsRedactor(state=> state.setLanguage)
-	const redactorValue 	       = useRedactor(state=>state.redactorValue)
-	const setRedactorValue      = useRedactor(state=>state.setRedactorValue)
-	const cursorPosition        = useRedactor(state=>state.cursorPosition)
-	const setCursorPosition     = useRedactor(state=>state.setCursorPosition)
-	const textCursorPosition    = useRedactor(state=>state.textCursorPosition)
-	const setStartRedactorValue = useRedactor(state=>state.setStartRedactorValue)
-	const allowСhange           = useRedactor(state=>state.allowСhange)
-	const setId 			       = useLog(state=>state.setId)
-	const setName 			    	 = useLog(state=>state.setName)
-	const setRoom 			   	 = useLog(state=>state.setRoom)
-	const id 				    	 = useLog(state=>state.id)
 	const name 				    	 = useLog(state=>state.name)
-	const room 				    	 = useLog(state=>state.room)
 	const users 			    	 = useLog(state=>state.users)
-	const setUsers           	 = useLog(state=>state.setUsers)
-	const setMarkers         	 = useLog(state=>state.setMarkers)
-	const setColor         	    = useLog(state=>state.setColor)
+	const setCursorPosition     = useRedactor(state=>state.setCursorPosition)
 
-	useEffect(()=>{
-		socket.emit(URLS.join)
-		socket.on(URLS.auth,(data)=>{
-			setId(data.id);
-			setName(data.name);
-			setRoom(data.room);
-			setColor(data.color);
-			setLanguage(data.language)
-			setStartRedactorValue(data.editorValue);
-		})
-		
-		socket.on(URLS.serverValue,(editorValue)=>{
-			setRedactorValue(editorValue)
-		})
+	useGetServerValue(socket)
 
-		socket.on(URLS.serverCursors,(userss)=>{
-			setUsers(userss)
-		})
-
-		socket.on(URLS.serverTextCursors,(textCursorss)=>{
-			setMarkers(textCursorss)
-		})
-
-		socket.on(URLS.clientDisconnect,(params)=>{
-			setUsers(params.users)
-			setMarkers(params.textCursors)
-		})	
-
-		socket.on(URLS.serverLanguage,(languageValue)=>{
-			setLanguage(languageValue)
-		})	
-		
-	},[])
-	
-	useEffect(()=>{
-			const params = {
-				data:redactorValue,
-				name:name,
-				room:room
-			}
-			
-			if(allowСhange){
-				socket.emit(URLS.clientValueСhanged,params)
-			}
-	},[redactorValue])
-	
-	useEffect(()=>{
-		const cursor = {
-			id:id,
-			X:cursorPosition.X,
-			Y:cursorPosition.Y,
-		}
-		
-		socket.emit(URLS.positionCursorChange,cursor)
-	},[cursorPosition])
-
-	useEffect(()=>{
-		const textCursor = {
-			id:id,
-			column:textCursorPosition.column,
-			row:textCursorPosition.row,
-		}
-		
-		socket.emit(URLS.positionTextCursorChange,textCursor)
-	},[textCursorPosition])
-
-	useEffect(()=>{
-		if(allowСhange){
-			socket.emit(URLS.languageChange,language)
-		}
-	},[language])
+	useSendRedactorValue(socket)
+	useSendCursorPosition(socket)
+	useSendTextCursorPosition(socket)
+	useSendLanguage(socket)
 
 	useBeforeunload(()=>{
 		socket.emit(URLS.disconnect,name)
