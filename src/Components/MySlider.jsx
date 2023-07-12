@@ -5,7 +5,7 @@ import Slider from '@mui/material/Slider';
 
 
 //Модернизированный слайдер из material-ui
-//Используется в компоненте SettingsSideBar
+//Используется в компоненте SettingsSideBar.jsx
 export default function MySlider({value, title, max, min, setValue}) {
  
   return (

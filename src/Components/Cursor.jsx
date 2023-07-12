@@ -3,8 +3,9 @@ import cursorImg from '../img/cursor.svg'
 import {HandySvg} from 'handy-svg';
 import { useSettingsRedactor } from '../store';
 
-//Компонент курсора пользователя
-const Cursor = ({color, x, y,name}) => {
+//Компонент отвечающий за отрисовку курсора пользователя
+//Задействован в компоненте App.js
+const Cursor = ({color, x, y, name}) => {
 	const cursorLabel = useSettingsRedactor(state=> state.cursorLabel)
 	
 	return(

@@ -3,7 +3,7 @@ import CodeEditor from './Components/CodeRedactor/CodeRedactor';
 import SideBar from './Components/SideBar';
 import io from 'socket.io-client'
 import { useEffect} from 'react';
-import { useLog, useRedactor} from './store';
+import { useLog, useRedactor, useSettingsRedactor} from './store';
 import { useBeforeunload } from 'react-beforeunload';
 import { URLS } from './URLS';
 import Cursor from './Components/Cursor';
@@ -13,6 +13,8 @@ import Cursor from './Components/Cursor';
 // Содержит сайдбар, редактор кода и логику работы с сервером
 const socket = io.connect(URLS.httpServer)	
 function App() {
+	const language              = useSettingsRedactor(state=> state.language)
+	const setLanguage           = useSettingsRedactor(state=> state.setLanguage)
 	const redactorValue 	       = useRedactor(state=>state.redactorValue)
 	const setRedactorValue      = useRedactor(state=>state.setRedactorValue)
 	const cursorPosition        = useRedactor(state=>state.cursorPosition)
@@ -34,11 +36,12 @@ function App() {
 	useEffect(()=>{
 		socket.emit(URLS.join)
 		socket.on(URLS.auth,(data)=>{
-			setId(data.id)
-			setName(data.name)
-			setRoom(data.room)
-			setColor(data.color)
-			setStartRedactorValue(data.editorValue)
+			setId(data.id);
+			setName(data.name);
+			setRoom(data.room);
+			setColor(data.color);
+			setLanguage(data.language)
+			setStartRedactorValue(data.editorValue);
 		})
 		
 		socket.on(URLS.serverValue,(editorValue)=>{
@@ -54,8 +57,12 @@ function App() {
 		})
 
 		socket.on(URLS.clientDisconnect,(params)=>{
-			setUsers(params.userss)
-			setMarkers(params.textCursorss)
+			setUsers(params.users)
+			setMarkers(params.textCursors)
+		})	
+
+		socket.on(URLS.serverLanguage,(languageValue)=>{
+			setLanguage(languageValue)
 		})	
 		
 	},[])
@@ -92,7 +99,12 @@ function App() {
 		socket.emit(URLS.positionTextCursorChange,textCursor)
 	},[textCursorPosition])
 
-	
+	useEffect(()=>{
+		if(allowСhange){
+			socket.emit(URLS.languageChange,language)
+		}
+	},[language])
+
 	useBeforeunload(()=>{
 		socket.emit(URLS.disconnect,name)
 	})

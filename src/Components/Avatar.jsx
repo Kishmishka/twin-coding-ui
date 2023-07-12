@@ -2,6 +2,8 @@ import React from 'react'
 import {HandySvg} from 'handy-svg';
 import {useAvatar} from '../Hooks/useAvatar'
 
+//Компонент отвечающий за отрисовку аватарки пользователя при авторизации
+//Задействован в компоненте SideBar.jsx
 const Avatar = ({color,name}) => {
 	return(
 		<div title={name} style={{

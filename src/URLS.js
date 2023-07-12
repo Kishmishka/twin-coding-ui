@@ -1,4 +1,3 @@
-
 const URLS = {
 	httpServer: process.env.REACT_APP_URL_SERVER,
 	port:3030,
@@ -13,6 +12,8 @@ const URLS = {
 	serverCursors:'serverCursors',
 	clientDisconnect:'clientDisconnect',
 	positionTextCursorChange:'positionTextCursorChange',
-	serverTextCursors:'serverTextCursors'
+	serverTextCursors:'serverTextCursors',
+	languageChange:'languageChange',
+	serverLanguage:'serverLanguage',
 }
 exports.URLS = URLS

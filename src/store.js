@@ -4,7 +4,6 @@ import create from 'zustand'
 // Zushtand - простой стейтменеджер 
 export const useSettingsRedactor = create((set, get) =>({
 	language:'',
-	fontSize:27,
 	tabSize:3,
 	blackTheme: false,
 	cursorLabel: false,
@@ -12,9 +11,6 @@ export const useSettingsRedactor = create((set, get) =>({
 	
 	setLanguage:(value)=>{
 		set({language: value})
-	},
-	setFontSize:(value)=>{
-		set({fontSize:value})
 	},
 	setTabSize:(value)=>{
 		set({tabSize:value})

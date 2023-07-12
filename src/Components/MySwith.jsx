@@ -2,7 +2,7 @@ import { styled } from '@mui/material/styles';
 import Switch from '@mui/material/Switch';
 
 //Модернизированный свич из material-ui
-//Используется в компоненте SideBar
+//Используется в компоненте SideBar.jsx
 const MySwitch = styled(Switch)(({ blackTheme }) => ({
 	width: 76,
 	height: 34,

@@ -10,18 +10,17 @@ import settings from '../../img/settings.svg'
 import MySlider from '../MySlider';
 import './SettingsSideBar.scss'
 
-//выпадающее меню настроек редактора
-//дочерний компонент сайдбара
+//Выпадающее меню настроек редактора
+//Задействован в компоненте SideBar.jsx
+//Создан при помощи material-ui
 export default function SettingsSideBar() {
-  	const [state, setState] = React.useState(false);
-	const setLanguage       = useSettingsRedactor(state => state.setLanguage)
-	const language 		   = useSettingsRedactor(state => state.language)
-	const setFontSize       = useSettingsRedactor(state=> state.setFontSize)
-	const fontSize          = useSettingsRedactor(state=> state.fontSize)
-	const setTabSize        = useSettingsRedactor(state=> state.setTabSize)
-	const tabSize           = useSettingsRedactor(state=> state.tabSize)
-	const swapCursorLabel   = useSettingsRedactor(state=> state.swapCursorLabel)
-	const cursorLabel       = useSettingsRedactor(state=> state.cursorLabel)
+  	const [state, setState] 	 = React.useState(false);
+	const setLanguage       	 = useSettingsRedactor(state => state.setLanguage)
+	const language 		   	 = useSettingsRedactor(state => state.language)
+	const setTabSize         	 = useSettingsRedactor(state=> state.setTabSize)
+	const tabSize           	 = useSettingsRedactor(state=> state.tabSize)
+	const swapCursorLabel   	 = useSettingsRedactor(state=> state.swapCursorLabel)
+	const cursorLabel         	 = useSettingsRedactor(state=> state.cursorLabel)
    const swapTextCursorLabel   = useSettingsRedactor(state=> state.swapTextCursorLabel)
 	const textCursorLabel       = useSettingsRedactor(state=> state.textCursorLabel)
 	const toggleDrawer = (open) => (event) => {
@@ -41,23 +40,15 @@ export default function SettingsSideBar() {
 			<MySlider
 			setValue={setTabSize} 
 			value={tabSize}
-			title={"TabSize"} 
+			title={"Tab size"} 
 			max={4} 
 			min={1}
 			></MySlider>
       </ListItem>
-		<ListItem  disablePadding>
-			<MySlider
-			setValue={setFontSize} 
-			value={fontSize} 
-			title={"FontSize"} 
-			max={40} 
-			min={15}></MySlider>
-      </ListItem>
       <ListItem  disablePadding  sx={{ mt:'25px',}}>
         	<Menu 
 			title={'Language'} 
-			items={['java', 'javascript']} 
+			items={['java', 'javascript', 'sql']} 
 			setValue={setLanguage} 
 			value={language}/>
       </ListItem>

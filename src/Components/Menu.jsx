@@ -8,8 +8,7 @@ import { TextField } from '@mui/material';
 
 
 //Модернизированный компонент menu взятый из material-ui
-//Используется в компоненте SettingsSideBar
-
+//Используется в компоненте SettingsSideBar.jsx
 const CssTextField = styled(TextField)({
 	color:"#FFFFFFFF",
 	 margin:"0 auto", 

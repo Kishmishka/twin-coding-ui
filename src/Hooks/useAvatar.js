@@ -15,6 +15,7 @@ import squirrel from '../img/Avatars/squirrel.svg'
 import duck from '../img/Avatars/duck.svg'
 import sheep from '../img/Avatars/sheep.svg'
 
+// Пользовательский хук служащий для отрисовки автатарки по имени пользователя
 function useAvatar(name){
 	switch(name){
 		case 'Загорелый пингвин':
@@ -41,9 +42,9 @@ function useAvatar(name){
 			return toucan;
 		case 'Прямолинейная кобра':
 			return cobra;
-		case 'Скатившийся скат':
+		case 'Забагованный скат':
 			return stingray;
-		case 'Рентабельная белка':
+		case 'Рекурсивная белка':
 			return squirrel;
 		case 'Относительная утка':
 				return duck;

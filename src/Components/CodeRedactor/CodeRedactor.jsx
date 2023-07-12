@@ -2,6 +2,7 @@ import React from 'react'
 import AceEditor from "react-ace";
 import 'ace-builds/src-noconflict/mode-sass'
 import "ace-builds/src-noconflict/mode-typescript";
+import "ace-builds/src-noconflict/mode-sql";
 import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/theme-tomorrow";
 import "ace-builds/src-noconflict/theme-twilight";
@@ -11,9 +12,9 @@ import './CodeRedactor.scss'
 
 //Компонент редактора кода с натройками
 //npm react-ace
+//Задействован в компоненте App.js
 const CodeEditor = () => {
 	const theme                 = useSettingsRedactor(state=> state.blackTheme)
-	const fontSize              = useSettingsRedactor(state=> state.fontSize)
 	const language              = useSettingsRedactor(state=> state.language)
 	const tabSize               = useSettingsRedactor(state=> state.tabSize)
 	const redactorValue         = useRedactor(state=> state.redactorValue)
@@ -29,7 +30,7 @@ const CodeEditor = () => {
 			value={redactorValue}
 			placeholder='good luck)'
 			theme= {theme ? 'twilight': 'tomorrow'}
-			fontSize={fontSize}
+			fontSize={20}
 			name="UNIQUE_ID_OF_DIV"
 			width='100vw'
 			height='100vh'

@@ -7,7 +7,8 @@ import { useLog, useSettingsRedactor } from '../store';
 import Avatar from './Avatar';
 
 
-//Компонент сайдбара содержащий лого, выбор темы и кнопку вызова настроек
+//Компонент отвечающий за отрисовку боковой панели
+//Используется в компоненте App.js
 const SideBar = ({}) => {
 	const blackTheme = useSettingsRedactor(state=> state.blackTheme)
 	const swapblackTheme = useSettingsRedactor(state=> state.swapblackTheme)
@@ -28,15 +29,13 @@ const SideBar = ({}) => {
 			}}>
 			<div className="top">
 				<img className="sideBar_img" src={logo}/>
-				{console.log(color)}
-				{console.log(name)}
 				{color!=='' && name!=='' && (<Avatar color={color} name={name} />)}
 				 
 				{users.map(user=><Avatar color={user.color} name={user.name} />)}
 			</div>
 			<div className="bottom">
-				<MySwitch onChange={()=>{swapblackTheme()}} blackTheme={blackTheme} sx={{mt:"30px"}}></MySwitch>
 				<SettingsSideBar></SettingsSideBar>
+				<MySwitch onChange={()=>{swapblackTheme()}} blackTheme={blackTheme} sx={{mb:"10px"}}></MySwitch>
 			</div>
 		</Box>
 )
