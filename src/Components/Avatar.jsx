@@ -1,12 +1,26 @@
 import React from 'react'
 import {HandySvg} from 'handy-svg';
 import {useAvatar} from '../Hooks/useAvatar'
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
+import styled from '@emotion/styled';
 
 //Компонент отвечающий за отрисовку аватарки пользователя при авторизации
 //Задействован в компоненте SideBar.jsx
+const BootstrapTooltip = styled(({ className, ...props }) => (
+	<Tooltip {...props} arrow classes={{ popper: className }} />
+ ))(({ theme }) => ({
+	[`& .${tooltipClasses.arrow}`]: {
+	  color: theme.palette.common.black,
+	},
+	[`& .${tooltipClasses.tooltip}`]: {
+	  backgroundColor: theme.palette.common.black,
+	},
+ }));
+
 const Avatar = ({color,name}) => {
 	return(
-		<div title={name} style={{
+		<BootstrapTooltip title={name}>
+			<div  style={{
 			border:`2px solid ${color}`, 
 			maxHeight:'50px',
 			maxWidth:'50px',
@@ -24,6 +38,8 @@ const Avatar = ({color,name}) => {
 			fill={color}
 		/>	
 		</div>
+	</BootstrapTooltip>
+		
 )
 }
 export default Avatar

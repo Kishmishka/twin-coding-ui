@@ -14,11 +14,12 @@ import { URLS } from './URLS';
 
 // Главный компонент приложения который 
 // Содержит сайдбар, редактор кода и логику работы с сервером
-const socket = io.connect(URLS.httpServer)	
+const socket = io.connect(URLS.httpServer)
+	
 function App() {
-	const name 				    	 = useLog(state=>state.name)
-	const users 			    	 = useLog(state=>state.users)
-	const setCursorPosition     = useRedactor(state=>state.setCursorPosition)
+	const name = useLog(state=>state.name)
+	const users = useLog(state=>state.users)
+	const setCursorPosition = useRedactor(state=>state.setCursorPosition)
 
 	useGetServerValue(socket)
 
