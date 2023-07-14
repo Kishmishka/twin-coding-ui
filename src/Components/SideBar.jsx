@@ -5,6 +5,7 @@ import SettingsSideBar from './SettingsSideBar/SettingsSideBar';
 import MySwitch from './MySwith';
 import { useLog, useSettingsRedactor } from '../store';
 import Avatar from './Avatar';
+import OutputSideBar from './OutputSideBar';
 
 
 //Компонент отвечающий за отрисовку боковой панели
@@ -18,6 +19,8 @@ const SideBar = ({}) => {
 	
 	return(
 		<Box sx={{
+			position:'relative', 
+			zIndex:4,
 			height: "100vh", 
 			width: "95px", 
 			background:"linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(35,35,35,1) 40%, rgba(35,35,35,1) 61%, rgba(0,0,0,1) 100%);",
@@ -34,8 +37,9 @@ const SideBar = ({}) => {
 				{users.map(user=><Avatar color={user.color} name={user.name} />)}
 			</div>
 			<div className="bottom">
-				<SettingsSideBar></SettingsSideBar>
-				<MySwitch onChange={()=>{swapblackTheme()}} blackTheme={blackTheme} sx={{mb:"10px"}}></MySwitch>
+				<OutputSideBar/>
+				<SettingsSideBar/>
+				<MySwitch onChange={()=>{swapblackTheme()}} blackTheme={blackTheme} sx={{mb:"10px"}}/>
 			</div>
 		</Box>
 )

@@ -9,6 +9,7 @@ import "ace-builds/src-noconflict/theme-twilight";
 import "ace-builds/src-noconflict/ext-language_tools";
 import {useLog, useRedactor, useSettingsRedactor } from '../../store';
 import './CodeRedactor.scss'
+import OutputSideBar from '../OutputSideBar';
 
 //Компонент редактора кода с натройками
 //npm react-ace
@@ -24,7 +25,8 @@ const CodeEditor = () => {
 	const textCursorLabel       = useSettingsRedactor(state=> state.textCursorLabel)
 	
 	return(
-		<AceEditor
+	
+			<AceEditor
 			style={{position:"relative", zIndex:2}}
 		 	mode={language==='javascript'? "typescript": language!=='' ? language: 'java'}
 			value={redactorValue}
@@ -42,7 +44,6 @@ const CodeEditor = () => {
 			onCursorChange={(e)=>{setTextCursorPosition(e.cursor.column,e.cursor.row)}}
 			markers = {textCursorLabel? markers: []}
   		/>
-		
 )
 }
 export default CodeEditor
