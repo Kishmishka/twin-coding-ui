@@ -13,7 +13,7 @@ const Cursor = ({color, x, y, name}) => {
 		overflow:'hidden',
 		display:cursorLabel ? "block":"none",
 		pointerEvents: "none", 
-		zIndex:6, 
+		zIndex:8, 
 		left:`${x-70}px`, 
 		top: y-62}}>
 			<HandySvg

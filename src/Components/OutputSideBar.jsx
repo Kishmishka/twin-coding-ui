@@ -1,11 +1,12 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import { CircularProgress, IconButton, TextField} from '@mui/material';
+import { CircularProgress, IconButton} from '@mui/material';
 import compile from '../img/compile.svg';
 import close from '../img/close.svg';
 import { useCompiling, useRedactor, useSettingsRedactor } from '../store';
 import axios from "axios";
+import { CompilingStatus } from '../Constants/CompilingStatus';
 //Выпадающий вывод компиляции кода
 //Задействован в компоненте SideBar.jsx
 //Создан при помощи material-ui
@@ -19,11 +20,14 @@ export default function OutputSideBar() {
 	const compilingProcess = useCompiling(state=>state.compilingProcess)
 	const setCompilingOutput = useCompiling(state=>state.setCompilingOutput)
 	const setCompilingProcess = useCompiling(state=>state.setCompilingProcess)
-	
-	const toggleDrawer = (open) => (event) => {
-		handleCompile();
-		setOpenSide(open);
+	const setShowAlertManyRequest = useCompiling(state=>state.setShowAlertManyRequest)
+	const showAlertManyRequest = useCompiling(state=>state.showAlertManyRequest)
+	const toggleDrawer = (value) => (event) => {
+		value && handleCompile();
+		setOpenSide(value);
     };
+
+	
 	
 	const handleCompile = () => {
 	setCompilingProcess(true);
@@ -58,13 +62,8 @@ export default function OutputSideBar() {
         // get error status
         let status = err.response.status;
         console.log("status", status);
-        if (status === 429) {
-          console.log("too many requests", status);
-
-         //  showErrorToast(
-         //    `Quota of 100 requests exceeded for the Day! Please read the blog on freeCodeCamp to learn how to setup your own RAPID API Judge0!`,
-         //    10000
-         //  );
+        if (status === CompilingStatus.manyRequest) {
+			setShowAlertManyRequest(true)
         }
         setCompilingProcess(false);
         console.log("catch block...", error);
@@ -118,6 +117,7 @@ export default function OutputSideBar() {
             onClose={toggleDrawer(false)}
           >
 				<Box
+				
 				sx={{
 					backgroundColor:"#151515", 
 					display:'flex',
@@ -125,7 +125,7 @@ export default function OutputSideBar() {
 					position:'sticky', 
 					top:0
 					}}>
-					{compilingProcess ? <span style={{
+					{/* {compilingProcess ? <span style={{
 												color:'white', 
 												padding:"10px 20px", 
 												fontSize:'20px'}}
@@ -134,7 +134,12 @@ export default function OutputSideBar() {
 														color:'white', 
 														padding:"10px 20px", 
 														fontSize:'20px'}}
-														> Cpompiling: complite </span>}
+														> Cpompiling: complite </span>} */}
+					<span style={{color:'white', 
+									  padding:"10px 20px", 
+									  fontSize:'20px'}}
+					> {compilingProcess ? <CircularProgress size={23} color="inherit" />
+					: "Cpompiling: complite"} </span>
 					
 					<IconButton  onClick={toggleDrawer(false)} aria-label="delete" sx={{p:"5px 5px"}}>
 						<img width={'27px'}  src={close}/>

@@ -8,7 +8,11 @@ import { Languages } from './Constants/Languages'
 export const useCompiling = create((set, get)=>({
 	compilingOutput:'',
 	compilingProcess:false,
+	showAlertManyRequest:false,
 
+	setShowAlertManyRequest:(value)=>{
+		set({showAlertManyRequest:value})
+	},
 	setCompilingOutput:(responseCompiling)=>{
 		set({compilingOutput:get().compilingOutput+'\n'+
 		`${responseCompiling.finished_at}`+'\n'
