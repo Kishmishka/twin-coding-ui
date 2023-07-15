@@ -8,10 +8,11 @@ import { Languages } from './Constants/Languages'
 export const useCompiling = create((set, get)=>({
 	compilingOutput:'',
 	compilingProcess:false,
-	showAlertManyRequest:false,
-
-	setShowAlertManyRequest:(value)=>{
-		set({showAlertManyRequest:value})
+	
+	setCompilingOutputManyReques:()=>{
+		set({compilingOutput:get().compilingOutput+'\n'+
+		'Quota of 50 requests exceeded for the Day!'
+	})
 	},
 	setCompilingOutput:(responseCompiling)=>{
 		set({compilingOutput:get().compilingOutput+'\n'+

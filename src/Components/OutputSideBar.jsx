@@ -7,10 +7,10 @@ import close from '../img/close.svg';
 import { useCompiling, useRedactor, useSettingsRedactor } from '../store';
 import axios from "axios";
 import { CompilingStatus } from '../Constants/CompilingStatus';
+
 //Выпадающий вывод компиляции кода
 //Задействован в компоненте SideBar.jsx
 //Создан при помощи material-ui
-
 export default function OutputSideBar() {
 	
 	const [openSide, setOpenSide] = React.useState(false);
@@ -20,8 +20,7 @@ export default function OutputSideBar() {
 	const compilingProcess = useCompiling(state=>state.compilingProcess)
 	const setCompilingOutput = useCompiling(state=>state.setCompilingOutput)
 	const setCompilingProcess = useCompiling(state=>state.setCompilingProcess)
-	const setShowAlertManyRequest = useCompiling(state=>state.setShowAlertManyRequest)
-	const showAlertManyRequest = useCompiling(state=>state.showAlertManyRequest)
+	const setCompilingOutputManyReques = useCompiling(state=>state.setCompilingOutputManyReques)
 	const toggleDrawer = (value) => (event) => {
 		value && handleCompile();
 		setOpenSide(value);
@@ -63,7 +62,7 @@ export default function OutputSideBar() {
         let status = err.response.status;
         console.log("status", status);
         if (status === CompilingStatus.manyRequest) {
-			setShowAlertManyRequest(true)
+			setCompilingOutputManyReques()
         }
         setCompilingProcess(false);
         console.log("catch block...", error);
@@ -125,16 +124,7 @@ export default function OutputSideBar() {
 					position:'sticky', 
 					top:0
 					}}>
-					{/* {compilingProcess ? <span style={{
-												color:'white', 
-												padding:"10px 20px", 
-												fontSize:'20px'}}
-												><CircularProgress size={23} color="inherit" /> </span>: 
-												<span style={{
-														color:'white', 
-														padding:"10px 20px", 
-														fontSize:'20px'}}
-														> Cpompiling: complite </span>} */}
+					
 					<span style={{color:'white', 
 									  padding:"10px 20px", 
 									  fontSize:'20px'}}
