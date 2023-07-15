@@ -43,7 +43,7 @@ const CssTextField = styled(TextField)({
 });
 
 
-export default function Menu({title, items,value, setValue}) {
+export default function Menu({title, items, value, setValue}) {
   return (
     <Box sx={{ minWidth: 200, margin:"0 10px", width:'87%', mb:"20px"}}>
       <FormControl color='primary' fullWidth  sx={{color:'white', borderColor:'#EBEBEBFF'}}>

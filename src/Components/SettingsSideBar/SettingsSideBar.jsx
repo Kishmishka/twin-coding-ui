@@ -9,6 +9,7 @@ import { useSettingsRedactor } from '../../store';
 import settings from '../../img/settings.svg'
 import MySlider from '../MySlider';
 import './SettingsSideBar.scss'
+import { Languages } from '../../Constants/Languages';
 
 //Выпадающее меню настроек редактора
 //Задействован в компоненте SideBar.jsx
@@ -48,9 +49,9 @@ export default function SettingsSideBar() {
       <ListItem  disablePadding  sx={{ mt:'25px',}}>
         	<Menu 
 			title={'Language'} 
-			items={['java', 'javascript', 'sql']} 
+			items={[Languages.java.name, Languages.javaScript.name, Languages.sql.name]} 
 			setValue={setLanguage} 
-			value={language}/>
+			value={language.name}/>
       </ListItem>
 		<ListItem  disablePadding>
 		<FormControlLabel

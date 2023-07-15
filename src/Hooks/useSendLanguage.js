@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useRedactor, useSettingsRedactor } from "../store"
-import { URLS } from "../URLS"
+import { URLS } from "../Constants/URLS"
 
 function useSendLanguage(socket){
 	const language = useSettingsRedactor(state=> state.language)
@@ -8,7 +8,8 @@ function useSendLanguage(socket){
 	
 	useEffect(()=>{
 		if(allowСhange){
-			socket.emit(URLS .languageChange,language)
+			console.log(language)
+			socket.emit(URLS.languageChange,language.name)
 		}
 	},[language])
 }

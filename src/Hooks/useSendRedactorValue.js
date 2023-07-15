@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useLog, useRedactor } from "../store"
-import { URLS } from "../URLS"
+import { URLS } from "../Constants/URLS"
 
 function useSendRedactorValue(socket){
 	const redactorValue = useRedactor(state=>state.redactorValue)

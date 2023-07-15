@@ -1,16 +1,50 @@
-import create from 'zustand'
+import { create } from 'zustand'
+import { CompilingStatus } from './Constants/CompilingStatus'
+import { Languages } from './Constants/Languages'
 
 // Стор состояний созданный с помощью Zushtand
 // Zushtand - простой стейтменеджер 
+
+export const useCompiling = create((set, get)=>({
+	compilingOutput:'',
+	compilingProcess:false,
+
+	setCompilingOutput:(responseCompiling)=>{
+		set({compilingOutput:get().compilingOutput+'\n'+
+		`${responseCompiling.finished_at}`+'\n'
+		+`status: ${responseCompiling.status?.description}`
+		+(responseCompiling?.memory ? '\n'+`memory consumed: ${responseCompiling?.memory} bytes`: '')
+		+(responseCompiling?.time ? '\n'+`time spent: ${responseCompiling?.time} s`: '')+'\n'
+		+(responseCompiling.status.id === CompilingStatus.compilationError ? `compilation error: ${atob(responseCompiling?.compile_output)}` :
+		responseCompiling.status.id === CompilingStatus.succes ? `rezult: ${atob(responseCompiling.stdout)}` :
+		responseCompiling.status.id === CompilingStatus.error ? `error: Time Limit Exceeded`: `error: ${atob(responseCompiling?.stderr)}`)
+		
+	})
+	},
+	setCompilingProcess:(value)=>{
+		set({compilingProcess:value})
+	},
+}))
+
 export const useSettingsRedactor = create((set, get) =>({
-	language:'',
+	language:Languages.java,
 	tabSize:3,
 	blackTheme: false,
 	cursorLabel: false,
 	textCursorLabel: false,
 	
 	setLanguage:(value)=>{
-		set({language: value})
+		switch(value){
+			case Languages.java.name:
+				set({language:Languages.java})
+			break;
+			case Languages.javaScript.name:
+				set({language:Languages.javaScript})
+			break;
+			case Languages.sql.name:
+				set({language:Languages.sql})
+			break;
+		}
 	},
 	setTabSize:(value)=>{
 		set({tabSize:value})

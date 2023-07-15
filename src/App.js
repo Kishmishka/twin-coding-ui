@@ -10,7 +10,7 @@ import { useSendRedactorValue } from './Hooks/useSendRedactorValue';
 import { useGetServerValue } from './Hooks/useGetServerValue';
 import { useLog, useRedactor} from './store';
 import { useBeforeunload } from 'react-beforeunload';
-import { URLS } from './URLS';
+import { URLS } from './Constants/URLS';
 
 // Главный компонент приложения который 
 // Содержит сайдбар, редактор кода и логику работы с сервером

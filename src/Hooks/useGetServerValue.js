@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useLog, useRedactor, useSettingsRedactor } from "../store";
-import { URLS } from "../URLS";
+import { URLS } from "../Constants/URLS";
 
 function useGetServerValue(socket){
 	const setId = useLog(state=>state.setId)
