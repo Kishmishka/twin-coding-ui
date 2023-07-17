@@ -1,0 +1,36 @@
+{
+  "files": {
+    "main.css": "/static/css/main.3d361d11.css",
+    "main.js": "/static/js/main.9ca413d8.js",
+    "static/js/787.b1f11442.chunk.js": "/static/js/787.b1f11442.chunk.js",
+    "static/media/sheep.svg": "/static/media/sheep.d4192fd19ee651829f574657096cb5a9.svg",
+    "static/media/chameleon.svg": "/static/media/chameleon.19f6156b4df83bc7e164fdbd919684fd.svg",
+    "static/media/owl.svg": "/static/media/owl.bafc4e7d9ee9af28e02ffb926cfa8335.svg",
+    "static/media/settings.svg": "/static/media/settings.862f3c8f190bd3a031a2c0442c4925f4.svg",
+    "static/media/frog.svg": "/static/media/frog.1391fc879f24fcdc638dc3d427db3ba5.svg",
+    "static/media/anteater.svg": "/static/media/anteater.442b8e496a0ba8fedce70be72d4ce6f6.svg",
+    "static/media/elephant.svg": "/static/media/elephant.0014838f36c15bb3502a7090879b1a5f.svg",
+    "static/media/crocodile.svg": "/static/media/crocodile.89a65d7b18750a72274f47a9d1099477.svg",
+    "static/media/tortoise.svg": "/static/media/tortoise.a1ebac5b1a3e5c20c5947103d138e2a3.svg",
+    "static/media/squirrel.svg": "/static/media/squirrel.45dfb1065bc0222ee5f66cb618c265e9.svg",
+    "static/media/logo.svg": "/static/media/logo.df1fa04108f59c906fd1a0e8fd4d73c0.svg",
+    "static/media/duck.svg": "/static/media/duck.fc012921b15cd538fdfe75998f21bc4c.svg",
+    "static/media/shark.svg": "/static/media/shark.9b81baae00c9137781de7949131eb52f.svg",
+    "static/media/fish.svg": "/static/media/fish.352ece10517a600f676d6d92868aaad6.svg",
+    "static/media/cobra.svg": "/static/media/cobra.d5b7cbeec87c41ef4942653eada6b0a4.svg",
+    "static/media/stingray.svg": "/static/media/stingray.7d006af26a3013a6b221e670651eec33.svg",
+    "static/media/toucan.svg": "/static/media/toucan.12902f28e136e0586be7b50246179231.svg",
+    "static/media/penguin.svg": "/static/media/penguin.2f968bbae5993d75375593994f838483.svg",
+    "static/media/compile.svg": "/static/media/compile.517849a81f79a2da267f89288d805297.svg",
+    "static/media/cursor.svg": "/static/media/cursor.695b28468a51d443da85b54094530b07.svg",
+    "index.html": "/index.html",
+    "static/media/close.svg": "/static/media/close.005c636529875edf729450cafd28fb38.svg",
+    "main.3d361d11.css.map": "/static/css/main.3d361d11.css.map",
+    "main.9ca413d8.js.map": "/static/js/main.9ca413d8.js.map",
+    "787.b1f11442.chunk.js.map": "/static/js/787.b1f11442.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3d361d11.css",
+    "static/js/main.9ca413d8.js"
+  ]
+}
