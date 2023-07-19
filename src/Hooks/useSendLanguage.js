@@ -5,11 +5,11 @@ import { URLS } from "../Constants/URLS"
 function useSendLanguage(socket){
 	const language = useSettingsRedactor(state=> state.language)
 	const allowСhange = useRedactor(state=>state.allowСhange)
-	
+	const setRedactorValue = useRedactor(state=>state.setRedactorValue)
 	useEffect(()=>{
 		if(allowСhange){
-			console.log(language)
 			socket.emit(URLS.languageChange,language.name)
+			setRedactorValue(language.startPattern)
 		}
 	},[language])
 }

@@ -4,3 +4,37 @@
 		border-radius: 20px;
 	}
 }
+.SettingsSideBar{
+	background-color: #232323FF;
+	height:100%;
+	&__container{
+		padding: 15px;
+	}
+}
+.Menu{
+	&__logo{
+		display:flex;
+		justify-content: center;
+		margin-bottom: 30px;
+		img{
+			width:30px;
+		}
+	}
+	&__item{
+	margin-bottom: 15px;
+	}
+}
+.Item{
+	&__menu{
+		min-width:180px;
+	}
+	&__switch{
+		color: #fff;
+		margin: 0;
+		padding: 0;
+	}
+	&__slider{
+		color: #fff;
+		min-width:180px
+	}
+}

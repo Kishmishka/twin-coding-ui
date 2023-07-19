@@ -4,10 +4,10 @@ import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import { FormControlLabel, IconButton, Switch } from '@mui/material';
-import Menu from '../Menu';
+import Menu from '../MUI/Menu';
 import { useSettingsRedactor } from '../../store';
 import settings from '../../img/settings.svg'
-import MySlider from '../MySlider';
+import MySlider from '../MUI/MySlider';
 import './SettingsSideBar.scss'
 import { Languages } from '../../Constants/Languages';
 
@@ -28,70 +28,72 @@ export default function SettingsSideBar() {
     setState(open);
    };
 
-  const list = (anchor) => (
-    <Box
-	 	sx={{backgroundColor:"#232323FF", height:"100%", pl:'10px'}}
-      role="presentation"
-    >
-   <List >
-		<Box sx = {{display:"flex", justifyContent:"center", mb:"30px"}}>
-			<img width={'30px'}  src={settings}/>
-		</Box>
-		<ListItem className='gg' disablePadding>
-			<MySlider
-			setValue={setTabSize} 
-			value={tabSize}
-			title={"Tab size"} 
-			max={4} 
-			min={1}
-			></MySlider>
-      </ListItem>
-      <ListItem  disablePadding  sx={{ mt:'25px',}}>
-        	<Menu 
-			title={'Language'} 
-			items={[Languages.java.name, Languages.javaScript.name, Languages.sql.name]} 
-			setValue={setLanguage} 
-			value={language.name}/>
-      </ListItem>
-		<ListItem  disablePadding>
-		<FormControlLabel
-			sx={{color:'#F0F0F0', marginLeft:'5px'}}
-          control={
-            <Switch checked={cursorLabel} onChange={(e)=>{swapCursorLabel();}} name="antoine" />
-          }
-          label="User cursors"
-        />
-      </ListItem>
-		<ListItem  disablePadding>
-		<FormControlLabel
-			sx={{color:'#F0F0F0', marginLeft:'5px'}}
-          control={
-            <Switch checked={textCursorLabel} onChange={(e)=>{swapTextCursorLabel();}} name="antoine" />
-          }
-          label="User text cursors"
-        />
-      </ListItem>
-   </List>
+  const list =  (
+   <Box className="SettingsSideBar">
+		<div className="SettingsSideBar__container">
+			<List className="SettingsSideBar__menu Menu">
+				<Box className="Menu__logo">
+					<img src={settings}/>
+				</Box>
+				<ListItem className='Menu__item Item' disablePadding>
+					<MySlider
+						className="Item__slider"
+						setValue={setTabSize} 
+						value={tabSize}
+						title={"Tab size"} 
+						max={4} 
+						min={1}>
+					</MySlider>
+      		</ListItem>
+      		<ListItem className='Menu__item Item' disablePadding>
+					<div className="Item__menu">
+						<Menu
+						title={'Language'} 
+						items={[Languages.java.name, Languages.javaScript.name, Languages.sql.name]} 
+						setValue={setLanguage} 
+						value={language.name}/>
+					</div>
+     	 		</ListItem>
+				<ListItem className='Menu__item Item' disablePadding>
+					<div className="Item__switchMenu switchMenu">
+						<div className="switchMenu__item">
+							<FormControlLabel 
+								className='Item__switch'
+								label="User text cursors"
+								control={
+								<Switch 
+									checked={textCursorLabel} 
+									onChange={(e)=>{swapTextCursorLabel();}} 
+									name="UserTextCursor" />}/>
+						</div>
+						<div className="switchMenu__item">
+							<FormControlLabel 
+								className='Item__switch'
+								label="User cursors"
+          					control={
+            				<Switch  
+									checked={cursorLabel} 
+									onChange={(e)=>{swapCursorLabel();}} 
+									name="UserCursor" />}/>
+						</div>
+					</div>
+      		</ListItem>
+   		</List>
+		</div>
 	</Box>
   );
 
   return (
     <div>
-      {['left'].map((anchor) => (
-        <React.Fragment key={anchor}>
-		  <IconButton onClick={toggleDrawer(true)} aria-label="delete" sx={{color:"white"}}>
+		<IconButton onClick={toggleDrawer(true)} aria-label="delete" sx={{color:"white"}}>
 		  	<img width={'30px'}  src={settings}/>
-			</IconButton>
-          
-          <Drawer
-            anchor={anchor}
-            open={state}
-            onClose={toggleDrawer(false)}
-          >
-            {list(anchor)}
-          </Drawer>
-        </React.Fragment>
-      ))}
+		</IconButton>
+      <Drawer
+         anchor={'left'}
+         open={state}
+         onClose={toggleDrawer(false)}>
+      	{list}
+       </Drawer>
     </div>
   );
 }

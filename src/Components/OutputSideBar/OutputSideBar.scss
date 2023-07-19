@@ -1,0 +1,39 @@
+.OutputSideBar{
+	&__goCompilingBtn{
+		img{
+			width: 25px;
+		}
+	}
+}
+.Drawer{
+	&__header{
+		background-color: #151515 ;
+		display: flex;
+		justify-content: space-between;
+		position: sticky;
+		top: 0;
+	}
+	&__progressLabel{
+		color: white;
+		padding: 10px 20px;
+		font-size: 20px;
+	}
+	&__button{
+		img{
+			width: 30px;
+		}
+	}
+	&__output{
+		background-color: #232323;
+		height: 230px;
+		overflow: hidden;
+		textarea{
+			width: 100%;
+			height: 229px;
+			padding-left: 20px;
+			font-size: 20px;
+			background-color: #232323;
+			color: white;
+		}
+	}
+}

@@ -2,11 +2,12 @@ import { create } from 'zustand'
 import { CompilingStatus } from './Constants/CompilingStatus'
 import { Languages } from './Constants/Languages'
 
-// Стор состояний созданный с помощью Zushtand
-// Zushtand - простой стейтменеджер 
-
+//Стор со значениями компиляции
+//Используется в компоненте OutputSideBar.jsx
 export const useCompiling = create((set, get)=>({
+	//Ответ компилятора
 	compilingOutput:'',
+	//Флаг стостояния процесса 
 	compilingProcess:false,
 	
 	setCompilingOutputManyReques:()=>{
@@ -31,11 +32,19 @@ export const useCompiling = create((set, get)=>({
 	},
 }))
 
+//Стор со значениями настроек текстового редактора
+//Используется в компонентах:
+//CodeRedactor.jsx, Cursor.jsx, OutputSideBar.jsx, SettingsSideBar.jsx, SideBar.jsx
+//Используется в хуках:
+//useGetServerValue.js useSendLanguage.js 
 export const useSettingsRedactor = create((set, get) =>({
 	language:Languages.java,
 	tabSize:3,
+	//Флаг выбора темы
 	blackTheme: false,
+	//Флаг отображения курсоров пользователя
 	cursorLabel: false,
+	//Флаг отображения текстовых курсоров пользователя
 	textCursorLabel: false,
 	
 	setLanguage:(value)=>{
@@ -68,12 +77,19 @@ export const useSettingsRedactor = create((set, get) =>({
 	}
 }))
 
+// Стор со значениями пользователей
+//Используется в компонентах:
+//CodeRedactor.jsx, SideBar.jsx
+//Используется в хуках:
+//useGetServerValue.js, useSendCursorposition.js, 
+//useSendReadctorValue.js, useSendTextCursorPosition.js
 export const useLog = create((set, get)=>({
 	id:'',
 	name:'',
 	room:0,
 	color:'',
 	users:[],
+	//Массив со значениями текстовых курсоров пользоваиелей
 	markers:[],
 
 	setMarkers(value){
@@ -98,9 +114,17 @@ export const useLog = create((set, get)=>({
 	},
 }))
 
+//Стор со значениями котрые отображаются в текстовом редакторе
+//Используется в компонентах:
+//CodeRedactor.jsx, OutputSideBar.jsx,  SideBar.jsx
+//Используется в хуках:
+//useGetServerValue.js, useSendCursorposition.js,  useSendLanguage.js
+//useSendReadctorValue.js, useSendTextCursorPosition.js
 export const useRedactor = create((set, get) =>({
+	//Флаг разрещающий изменения состояния текста
 	allowСhange:false,
-	redactorValue:'',
+	//Значение текстового редактора
+	redactorValue:Languages.java.startPattern,
 	textCursorPosition:{
 		column:0,
 		row:0

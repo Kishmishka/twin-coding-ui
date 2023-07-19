@@ -1,8 +1,8 @@
 import './App.css';
 import CodeEditor from './Components/CodeRedactor/CodeRedactor';
-import SideBar from './Components/SideBar';
+import SideBar from './Components/SideBar/SideBar';
 import io from 'socket.io-client'
-import Cursor from './Components/Cursor';
+import Cursor from './Components/Cursor/Cursor';
 import { useSendLanguage } from './Hooks/useSendLanguage';
 import { useSendTextCursorPosition } from './Hooks/useSendTextCursorPosition';
 import { useSendCursorPosition } from './Hooks/useSendCursorPosition';
@@ -12,13 +12,12 @@ import { useLog, useRedactor} from './store';
 import { useBeforeunload } from 'react-beforeunload';
 import { URLS } from './Constants/URLS';
 
-// Главный компонент приложения который 
-// Содержит сайдбар, редактор кода и логику работы с сервером
+
 const socket = io.connect(URLS.httpServer)
 	
 function App() {
 	const name = useLog(state=>state.name)
-	const users = useLog(state=>state.users)
+	const activeUsers = useLog(state=>state.users)
 	const setCursorPosition = useRedactor(state=>state.setCursorPosition)
 
 	useGetServerValue(socket)
@@ -39,7 +38,7 @@ function App() {
 	 	<SideBar />
 		<CodeEditor/>
 		{/* <MyAlert showAlert={showAlertManyRequest}/> */}
-		{users.map(user=><Cursor
+		{activeUsers.map(user=><Cursor
 		key={user.id} 
 		color={user.color} 
 		x={user.cursorX} 
