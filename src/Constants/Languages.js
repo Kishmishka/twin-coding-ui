@@ -3,15 +3,15 @@ const Languages={
 		id:63,
 		name:'Java script',
 		value:'typescript',
-		startPattern:`console.log("good luck)")`
+		startPattern:`//good luck)`
 	},
 	java:{
 		id:62,
 		name:'Java',
 		value:'java',
-		startPattern:`class Main {
+		startPattern:`class Main{
 	public static void main(String[] args) {
-		System.out.println("good luck)");
+		//good luck)
 	}
 }`
 	},
@@ -19,7 +19,7 @@ const Languages={
 		id:82,
 		name:'SQL',
 		value:"sql",
-		startPattern:`SELECT * FROM TABEL`
+		startPattern:`SELECT * FROM GoodLuck`
 	}
 }
 exports.Languages = Languages

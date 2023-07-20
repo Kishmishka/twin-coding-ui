@@ -30,6 +30,7 @@ export default function OutputSideBar() {
 	
 	const handleCompile = () => {
 	setCompilingProcess(true);
+	console.log(redactorValue)
     const formData = {
       language_id: language.id,
       // encode source code in base64
